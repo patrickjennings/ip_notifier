@@ -10,8 +10,7 @@ else
 fi
 
 if [ "$CURRENT_IP" != "$PREVIOUS_IP" ] ; then
-    echo "IP Address Change: $CURRENT_IP" | msmtp -a default sycadellicman@gmail.com
-    # echo $CURRENT_IP
+    echo "IP Address Change: $CURRENT_IP" | msmtp -a default example@gmail.com
 fi
 
 echo "$CURRENT_IP" > "$FILE_NAME"
