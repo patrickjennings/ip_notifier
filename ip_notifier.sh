@@ -1,13 +1,12 @@
 #!/bin/bash
 
 EMAIL_ADDRESS='example@gmail.com'
+FILE_PATH='/home/patrick/.wan_ip'
 CURRENT_IP=`dig +short myip.opendns.com @resolver1.opendns.com`
-FILE_NAME='/home/patrick/.wan_ip'
+PREVIOUS_IP=''
 
-if [ -f "$FILE_NAME" ]; then
-    PREVIOUS_IP=`cat $FILE_NAME`
-else
-    PREVIOUS_IP=''
+if [ -f "$FILE_PATH" ]; then
+    PREVIOUS_IP=`cat $FILE_PATH`
 fi
 
 if [ "$CURRENT_IP" != "$PREVIOUS_IP" ] ; then
@@ -15,4 +14,4 @@ if [ "$CURRENT_IP" != "$PREVIOUS_IP" ] ; then
         msmtp -a default $EMAIL_ADDRESS
 fi
 
-echo "$CURRENT_IP" > "$FILE_NAME"
+echo "$CURRENT_IP" > "$FILE_PATH"
